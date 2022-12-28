@@ -53,6 +53,10 @@ def main():
                 GAMEOVER = True
                 end = GameOver()
 
+                # записываю очки в high-score.txt
+                with open('high-score.txt', 'w') as file:
+                    file.write(str(score.points))
+
         # рендеринг
         screen.fill(WHITE)
         score.draw(screen)

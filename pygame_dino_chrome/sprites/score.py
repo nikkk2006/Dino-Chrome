@@ -11,7 +11,7 @@ class Score(pygame.sprite.Sprite):
 
         # загружаю шрифт в проект
         self.font = pygame.font.Font(r'assets\fonts\gamefont.ttf', 20)
-        self.image = self.font.render(f'HI {self.points}', True, self.GREY)
+        self.image = self.font.render(f'SCORE {self.points}', True, self.GREY)
         self.rect = self.image.get_rect()
 
         # расположение надписи на экране
@@ -19,7 +19,7 @@ class Score(pygame.sprite.Sprite):
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
-        self.image = self.font.render(f'HI {self.points}', True, self.GREY)
+        self.image = self.font.render(f'SCORE {self.points}', True, self.GREY)
         self.rect.right = surface.get_width() - 20 * len(str(self.points))
 
     def update(self):
