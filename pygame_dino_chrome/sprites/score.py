@@ -27,3 +27,34 @@ class Score(pygame.sprite.Sprite):
         # на каждый 10-ый шаг очки увеличиваются
         if self.step % 10 == 0:
             self.points += 1
+
+class High_Score(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+
+        self.GREY = (83, 83, 83)
+        with open('high-score.txt', 'r') as file:
+            POINTS = int(file.read())               # количество очков
+
+        # загружаю шрифт в проект
+        self.font = pygame.font.Font(r'assets\fonts\gamefont.ttf', 20)
+        self.image = self.font.render(f'HI {POINTS}', True, self.GREY)
+        self.rect = self.image.get_rect()
+
+    def draw(self, surface):
+        surface.blit(self.image, self.rect)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

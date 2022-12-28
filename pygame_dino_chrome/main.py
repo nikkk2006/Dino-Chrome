@@ -2,7 +2,7 @@ from sprites.road import Road
 from sprites.cloud import Cloud
 from sprites.dino import Dino
 from sprites.obstackles import Cactus
-from sprites.score import Score
+from sprites.score import Score, High_Score
 from sprites.game import GameOver
 import pygame
 pygame.init()
@@ -27,6 +27,7 @@ def main():
 
     # создание спрайтов
     score = Score()
+    high_score = High_Score()
     road = Road()
     dino = Dino()
     clouds = pygame.sprite.Group()
@@ -54,12 +55,17 @@ def main():
                 end = GameOver()
 
                 # записываю очки в high-score.txt
-                with open('high-score.txt', 'w') as file:
-                    file.write(str(score.points))
+                with open('high-score.txt', 'r') as file:
+                    text = file.read()
+
+                if score.points > int(text):
+                    with open('high-score.txt', 'w') as file:
+                        file.write(str(score.points))
 
         # рендеринг
         screen.fill(WHITE)
         score.draw(screen)
+        high_score.draw(screen)
         road.draw(screen)
         clouds.draw(screen)
         dino.draw(screen)
